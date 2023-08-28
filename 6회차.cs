@@ -1,3 +1,4 @@
+//교재 235p 나쁜 이웃집 사람들
 using System;
 using static System.Console;
 using System.Collections;
@@ -8,7 +9,6 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Globalization;
 using System.Net.Http.Headers;
-#교재 235p 나쁜 이웃집 사람들
 namespace ConsoleApp2
 {
     class Program
