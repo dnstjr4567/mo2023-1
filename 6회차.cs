@@ -125,3 +125,62 @@ namespace ConsoleApp2
         }
     }
 }
+
+//백준 1463
+using System;
+using static System.Console;
+using System.Collections;
+using System.Collections.Generic;
+using System.Text;
+using System.Security.Cryptography.X509Certificates;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Globalization;
+
+namespace ConsoleApp2
+{
+    class Program
+    {
+
+        static void Main(string[] args)
+        {
+            int[] ans = new int[1000001];
+            int n = int.Parse(ReadLine());
+            ans[1] = 0;
+            ans[2] = 1;
+            ans[3] = 1; 
+            for (int i = 4;  i<= n; i++)
+            {
+                if (i % 6 == 0)
+                {
+                    ans[i] = Math.Min(ans[i / 2], ans[i / 3]) + 1;
+                }
+                else if (i % 2 == 0)
+                {
+                    ans[i] = ans[i / 2] + 1;
+                }
+                else if (i % 3 == 0)
+                {
+                    ans[i] = ans[i / 3] + 1;
+                }
+                else
+                {
+                    ans[i] = ans[i - 1] + 1;
+                }
+                if (ans[i] > ans[i - 1] + 1)
+                {
+                    ans[i] = ans[i - 1] + 1;
+                }
+            }
+            /*for (int i = 1; i <= n; i++)
+            {
+                WriteLine($"i{i}, ans[i] {ans[i]}");
+            }*/
+            Write(ans[n]);
+        }
+
+
+
+    }
+}
+동적계획법 문제를 풀어보았다
