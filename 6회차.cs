@@ -56,3 +56,72 @@ namespace ConsoleApp2
 
     }
 }
+
+//백준 1932 정수삼각형
+using System;
+using System.Collections.Generic;
+using System.Collections;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using static System.Console;
+using System.Security.Cryptography.X509Certificates;
+using System.Configuration;
+using System.CodeDom;
+using System.Runtime.InteropServices;
+
+namespace ConsoleApp2
+{
+    internal class Program
+    {
+
+        static void Main(string[] args)
+        {
+            int n = int.Parse(ReadLine());
+            int[,] tri = new int[n, n];
+            for (int i = 0; i < n; i++)
+            {
+                int[] arr = Array.ConvertAll(ReadLine().Split(), int.Parse);
+                for (int j = 0; j < n; j++)
+                {
+                    if (j < arr.Length)
+                    {
+                        tri[i, j] = arr[j];
+                    }
+                    else
+                    {
+                        tri[i, j] = -1;
+                    }
+                }
+
+            }
+            
+            int[,] sum = new int[n,n];
+            sum[0,0] = tri[0, 0];
+            int max = sum[0,0];
+            for (int i = 1; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    if (tri[i, j] > -1)
+                    {
+                        if (j == 0)
+                        {
+                            sum[i, j] = sum[i - 1, j] + tri[i, j];
+                        }
+                        else
+                        {
+                            sum[i, j] = Math.Max(sum[i - 1, j] + tri[i, j], sum[i - 1, j - 1] + tri[i, j]);
+                        }
+                    }
+                    if (sum[i,j]>max)
+                    {
+                        max = sum[i, j];
+                    }
+                }
+            }
+            WriteLine(max);
+
+        }
+    }
+}
